@@ -22,9 +22,9 @@ class HeadlinesTableViewController: UITableViewController {
             if let validData = data {
                 self.articles = Article.getJson(from: validData)
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
                     self.tableView.rowHeight = UITableViewAutomaticDimension
                     self.tableView.estimatedRowHeight = 170
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -37,8 +37,6 @@ class HeadlinesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(articles.count)
-        dump(articles)
         return articles.count
     }
 
@@ -47,7 +45,7 @@ class HeadlinesTableViewController: UITableViewController {
         let article = articles[indexPath.row]
         cell.titleLabel.text = article.title
         
-        /* Checks to see if byline or date are empty strings */
+        /* Only adds byline or date if they contain text */
         var byLineAndDateText = ""
         func addToBylineAndDateText(text: String) {
             if text == "" { return }
