@@ -12,6 +12,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var topStory = [TopStory]()
     @IBOutlet weak var topStoriesTableView: UITableView!
     @IBOutlet weak var sectionPicker: UIPickerView!
+    var sections = [String : Int]()
     
     let pickerData = ["Home",
                       "Opinion",
@@ -56,6 +57,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 if let validData = TopStory.getStories(from: data!) {
                     print("We have \(validData.count) stories")
                     self.topStory = validData
+                    self.configureSections()
                     DispatchQueue.main.async {
                         self.topStoriesTableView.reloadData()
                     }
@@ -67,6 +69,13 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     func selectSection() {
         let section = pickerData[sectionPicker.selectedRow(inComponent: 0)]
         loadData(for: section)
+    }
+    
+    func configureSections() {
+        sections = [String : Int]()
+        for all in topStory {
+            sections[all.section] = 0
+        }
     }
     
     // MARK: - Picker view data source
