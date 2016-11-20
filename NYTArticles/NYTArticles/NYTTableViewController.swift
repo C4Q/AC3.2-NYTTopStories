@@ -56,7 +56,7 @@ class NYTTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UIApplication.shared.open(URL(string: nyt[indexPath.row].url)!)
+        UIApplication.shared.open(URL(string: nyt[indexPath.row].url)!, options: [:], completionHandler: nil)
     }
     
     /*
