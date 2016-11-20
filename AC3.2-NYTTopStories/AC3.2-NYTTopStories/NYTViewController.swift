@@ -68,15 +68,18 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func selectSection() {
         let section = pickerData[sectionPicker.selectedRow(inComponent: 0)]
+        print("\n\(section) selected!")
         loadData(for: section)
+        topStoriesTableView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     func configureSections(for stories: [TopStory]) {
         var sectionDict = [String : Int]()
-        for all in stories {
-            sectionDict[all.section] = 0
+        for story in stories {
+            sectionDict[story.section] = 0
         }
         sections = Array(sectionDict.keys).sorted()
+        print("\nWe have these sections: \(sections)")
     }
     
     // MARK: - Picker view data source
@@ -99,7 +102,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count - 1
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
