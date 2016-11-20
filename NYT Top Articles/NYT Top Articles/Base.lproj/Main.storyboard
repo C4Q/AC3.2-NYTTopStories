@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kas-ZL-eba">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Top Articles Table View Controller-->
+        <scene sceneID="CeL-5e-qGF">
+            <objects>
+                <tableViewController id="Kas-ZL-eba" customClass="NYTTopArticlesTableViewController" customModule="NYT_Top_Articles" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="wT9-8k-X4N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleDetail" rowHeight="200" id="Yco-Z1-4ko" customClass="NYTArticleTableViewCell" customModule="NYT_Top_Articles" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yco-Z1-4ko" id="6Nq-wK-m85">
+                                    <frame key="frameInset" width="375" height="199"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnn-GA-1bk">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oae-aN-hKm">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhA-vX-Sfa">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdZ-vR-Db4">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lnn-GA-1bk" firstAttribute="trailing" secondItem="oae-aN-hKm" secondAttribute="trailing" id="2Ym-YR-S4d"/>
+                                        <constraint firstItem="lnn-GA-1bk" firstAttribute="leading" secondItem="6Nq-wK-m85" secondAttribute="leadingMargin" id="2lS-ff-O90"/>
+                                        <constraint firstItem="lnn-GA-1bk" firstAttribute="top" secondItem="6Nq-wK-m85" secondAttribute="topMargin" constant="8" id="9W4-bl-gn0"/>
+                                        <constraint firstItem="bhA-vX-Sfa" firstAttribute="top" secondItem="oae-aN-hKm" secondAttribute="bottom" id="EIm-Bj-PN2"/>
+                                        <constraint firstItem="bhA-vX-Sfa" firstAttribute="leading" secondItem="MdZ-vR-Db4" secondAttribute="leading" id="KIe-yH-jmd"/>
+                                        <constraint firstItem="MdZ-vR-Db4" firstAttribute="top" secondItem="bhA-vX-Sfa" secondAttribute="bottom" constant="4" id="M5F-Ls-ccU"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="MdZ-vR-Db4" secondAttribute="bottom" constant="-1" id="e7F-KN-UYC"/>
+                                        <constraint firstItem="oae-aN-hKm" firstAttribute="top" secondItem="lnn-GA-1bk" secondAttribute="bottom" constant="8" id="g9K-Kh-NIS"/>
+                                        <constraint firstItem="oae-aN-hKm" firstAttribute="leading" secondItem="bhA-vX-Sfa" secondAttribute="leading" id="gRh-4J-joQ"/>
+                                        <constraint firstItem="bhA-vX-Sfa" firstAttribute="trailing" secondItem="MdZ-vR-Db4" secondAttribute="trailing" id="gvh-uS-swj"/>
+                                        <constraint firstItem="lnn-GA-1bk" firstAttribute="trailing" secondItem="6Nq-wK-m85" secondAttribute="trailingMargin" id="h7N-qp-13I"/>
+                                        <constraint firstItem="oae-aN-hKm" firstAttribute="trailing" secondItem="bhA-vX-Sfa" secondAttribute="trailing" id="pAG-yj-K70"/>
+                                        <constraint firstItem="lnn-GA-1bk" firstAttribute="leading" secondItem="oae-aN-hKm" secondAttribute="leading" id="wxA-mt-Ejg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="abstractLabel" destination="MdZ-vR-Db4" id="uTn-DS-k5h"/>
+                                    <outlet property="byLineLabel" destination="oae-aN-hKm" id="ikN-wN-HtA"/>
+                                    <outlet property="dateLabel" destination="bhA-vX-Sfa" id="me9-Th-761"/>
+                                    <outlet property="titleLabel" destination="lnn-GA-1bk" id="GJq-lf-50L"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Kas-ZL-eba" id="GTL-Po-KdP"/>
+                            <outlet property="delegate" destination="Kas-ZL-eba" id="0cx-E0-hPe"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5v1-Wv-HdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="108.39580209895054"/>
+        </scene>
+    </scenes>
+</document>
