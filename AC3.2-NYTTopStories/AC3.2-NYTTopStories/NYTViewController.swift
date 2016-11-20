@@ -107,6 +107,19 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
+    func convertDate(from dateString: String) -> String {
+        //2016-11-19T12:15:21-05:00 date string format from API
+        //Format reference: http://userguide.icu-project.org/formatparse/datetime
+        let dateString = String(dateString.characters.prefix(16))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm" //this the string date format
+        let date = dateFormatter.date(from: dateString)
+        
+        dateFormatter.dateFormat = "MMM. d, yyyy -- h:mm a" //this is the conversion format
+        
+        return dateFormatter.string(from: date!)
+    }
+    
     // MARK: - Picker view data source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -159,7 +172,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         cell.titleLabel?.text = story.title
         cell.bylineLabel?.text = story.byline
-        cell.dateLabel?.text = story.date
+        cell.dateLabel?.text = convertDate(from: story.date) + " EST"
         cell.abstractLabel?.text = story.abstract
         
         return cell
