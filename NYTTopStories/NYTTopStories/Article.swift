@@ -51,7 +51,6 @@ class Article {
 
     static func getJson(from data: Data) -> [Article] {
         var articles = [Article]()
-        
         do {
             let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
             guard let response = jsonData as? [String: Any] else { throw ParseError.jsonSerialization }
@@ -60,18 +59,13 @@ class Article {
             for result in results {
                 articles.append(Article(resultsDict: result))
             }
-        }
-        catch ParseError.jsonSerialization {
+        } catch ParseError.jsonSerialization {
             print("jsonSerialization error")
-        }
-        catch ParseError.results {
+        } catch ParseError.results {
             print("results error")
-        }
-        catch {
+        } catch {
             print("error")
         }
-        
         return articles
     }
-
 }
