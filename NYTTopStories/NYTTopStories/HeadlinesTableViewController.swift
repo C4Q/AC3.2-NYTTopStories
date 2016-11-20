@@ -23,6 +23,8 @@ class HeadlinesTableViewController: UITableViewController {
                 self.articles = Article.getJson(from: validData)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.tableView.rowHeight = UITableViewAutomaticDimension
+                    self.tableView.estimatedRowHeight = 170
                 }
             }
         }
@@ -35,6 +37,8 @@ class HeadlinesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(articles.count)
+        dump(articles)
         return articles.count
     }
 
@@ -42,7 +46,21 @@ class HeadlinesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Article Cell", for: indexPath) as! HeadlinesTableViewCell
         let article = articles[indexPath.row]
         cell.titleLabel.text = article.title
-        cell.bylineAndDateLabel.text = "\(article.byline) \n \(article.publishedDate)"
+        
+        /* Checks to see if byline or date are empty strings */
+        var byLineAndDateText = ""
+        func addToBylineAndDateText(text: String) {
+            if text == "" { return }
+            if byLineAndDateText == "" {
+                byLineAndDateText += text
+            } else {
+                byLineAndDateText += "\n\(text)"
+            }
+        }
+        addToBylineAndDateText(text: article.byline)
+        addToBylineAndDateText(text: article.publishedDate)
+        
+        cell.bylineAndDateLabel.text = byLineAndDateText
         cell.abstractLabel.text = article.abstract
         return cell
     }
