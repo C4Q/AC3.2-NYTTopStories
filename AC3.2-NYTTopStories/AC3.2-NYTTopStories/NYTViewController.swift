@@ -12,7 +12,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var topStory = [TopStory]()
     @IBOutlet weak var topStoriesTableView: UITableView!
     @IBOutlet weak var sectionPicker: UIPickerView!
-    var sections = [String : Int]()
+    var sections = [String]()
     
     let pickerData = ["Home",
                       "Opinion",
@@ -57,7 +57,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 if let validData = TopStory.getStories(from: data!) {
                     print("We have \(validData.count) stories")
                     self.topStory = validData
-                    self.configureSections()
+                    self.configureSections(for: validData)
                     DispatchQueue.main.async {
                         self.topStoriesTableView.reloadData()
                     }
@@ -71,11 +71,12 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
         loadData(for: section)
     }
     
-    func configureSections() {
-        sections = [String : Int]()
-        for all in topStory {
-            sections[all.section] = 0
+    func configureSections(for stories: [TopStory]) {
+        var sectionDict = [String : Int]()
+        for all in stories {
+            sectionDict[all.section] = 0
         }
+        sections = Array(sectionDict.keys).sorted()
     }
     
     // MARK: - Picker view data source
@@ -98,16 +99,20 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sections.count - 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "\(sections[section])"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topStory.count
+        return topStory.filter{$0.section == sections[section]}.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "storyReuse", for: indexPath) as! NYTTableViewCell
-        let story = topStory[indexPath.row]
+        let story = topStory.filter{$0.section == sections[indexPath.section]}[indexPath.row]
         
         cell.titleLabel?.text = story.title
         cell.bylineLabel?.text = story.byline
@@ -118,7 +123,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = URL(string: topStory[indexPath.row].url) else { return }
+        guard let url = URL(string: topStory.filter{$0.section == sections[indexPath.section]}[indexPath.row].url) else { return }
         UIApplication.shared.open(url)
     }
 }
