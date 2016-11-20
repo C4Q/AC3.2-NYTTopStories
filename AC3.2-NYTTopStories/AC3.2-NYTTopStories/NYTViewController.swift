@@ -9,10 +9,26 @@
 import UIKit
 
 class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    var topStory = [TopStory]()
     @IBOutlet weak var topStoriesTableView: UITableView!
     @IBOutlet weak var sectionPicker: UIPickerView!
+    @IBOutlet weak var sortButton: UIBarButtonItem!
+    var topStory = [TopStory]()
     var sections = [String]()
+    var sorted = false
+    var cellIdentifer = "storyReuse"
+    
+    @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
+        sorted = !sorted
+        if !sorted {
+            sortButton.image = UIImage(named: "filter_empty")
+            self.title = "NYT Top Stories By Date"
+        }
+        else {
+            sortButton.image = UIImage(named: "filter_filled")
+            self.title = "NYT Top Stories By Section"
+        }
+        self.topStoriesTableView.reloadData()
+    }
     
     let pickerData = ["Home",
                       "Opinion",
@@ -82,6 +98,15 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
         print("\nWe have these sections: \(sections)")
     }
     
+    func sortSections(at indexPath: IndexPath) -> TopStory {
+        if sorted {
+            return topStory.filter { $0.section == sections[indexPath.section] }.sorted { $0.date > $1.date }[indexPath.row]
+        }
+        else {
+            return topStory.sorted { $0.date > $1.date } [indexPath.row]
+        }
+    }
+    
     // MARK: - Picker view data source
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -102,20 +127,35 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        if sorted {
+            return sections.count
+        }
+        else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "\(sections[section])"
+        if sorted {
+            return "\(sections[section])"
+        }
+        else {
+            return nil
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topStory.filter{$0.section == sections[section]}.count
+        if sorted {
+            return topStory.filter{$0.section == sections[section]}.count
+        }
+        else {
+            return topStory.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "storyReuse", for: indexPath) as! NYTTableViewCell
-        let story = topStory.filter{$0.section == sections[indexPath.section]}[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifer, for: indexPath) as! NYTTableViewCell
+        let story = sortSections(at: indexPath)
         
         cell.titleLabel?.text = story.title
         cell.bylineLabel?.text = story.byline
@@ -126,7 +166,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = URL(string: topStory.filter{$0.section == sections[indexPath.section]}[indexPath.row].url) else { return }
+        guard let url = URL(string: sortSections(at: indexPath).url) else { return }
         UIApplication.shared.open(url)
     }
 }
