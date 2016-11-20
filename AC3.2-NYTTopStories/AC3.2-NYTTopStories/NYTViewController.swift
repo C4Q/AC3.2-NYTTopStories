@@ -15,7 +15,6 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var topStory = [TopStory]()
     var sections = [String]()
     var sorted = false
-    var cellIdentifer = "storyReuse"
     
     @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
         sorted = !sorted
@@ -27,6 +26,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
             sortButton.image = UIImage(named: "filter_filled")
             self.title = "NYT Top Stories By Section"
         }
+        topStoriesTableView.setContentOffset(CGPoint.zero, animated: false)
         self.topStoriesTableView.reloadData()
     }
     
@@ -59,7 +59,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData(for: "home")
+        loadData(for: pickerData[0])
         topStoriesTableView.delegate = self
         topStoriesTableView.dataSource = self
         sectionPicker.delegate = self
@@ -71,7 +71,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
         APIRequestManager.manager.getData(endPoint: "https://api.nytimes.com/svc/topstories/v2/\(string).json?api-key=788f422f30424d219442b029449df041") { (data) in
             if data != nil {
                 if let validData = TopStory.getStories(from: data!) {
-                    print("We have \(validData.count) stories")
+                    print("We have \(validData.count) stories!")
                     self.topStory = validData
                     self.configureSections(for: validData)
                     DispatchQueue.main.async {
@@ -98,9 +98,9 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
         print("\nWe have these sections: \(sections)")
     }
     
-    func sortSections(at indexPath: IndexPath) -> TopStory {
+    func sortedSections(at indexPath: IndexPath) -> TopStory {
         if sorted {
-            return topStory.filter { $0.section == sections[indexPath.section] }.sorted { $0.date > $1.date }[indexPath.row]
+            return topStory.filter { $0.section == sections[indexPath.section] }.sorted { $0.date > $1.date } [indexPath.row]
         }
         else {
             return topStory.sorted { $0.date > $1.date } [indexPath.row]
@@ -146,7 +146,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if sorted {
-            return topStory.filter{$0.section == sections[section]}.count
+            return topStory.filter { $0.section == sections[section] }.count
         }
         else {
             return topStory.count
@@ -154,8 +154,8 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifer, for: indexPath) as! NYTTableViewCell
-        let story = sortSections(at: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "storyReuse", for: indexPath) as! NYTTableViewCell
+        let story = sortedSections(at: indexPath)
         
         cell.titleLabel?.text = story.title
         cell.bylineLabel?.text = story.byline
@@ -166,7 +166,7 @@ class NYTViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = URL(string: sortSections(at: indexPath).url) else { return }
+        guard let url = URL(string: sortedSections(at: indexPath).url) else { return }
         UIApplication.shared.open(url)
     }
 }
