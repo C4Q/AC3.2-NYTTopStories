@@ -16,6 +16,7 @@ class NYTTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayData()
+        self.navigationItem.title = "Home"
     }
     
     // MARK: - Method
