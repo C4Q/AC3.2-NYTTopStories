@@ -22,6 +22,7 @@ class HeadlinesTableViewController: UITableViewController {
             if let validData = data {
                 self.articles = Article.getJson(from: validData)
                 DispatchQueue.main.async {
+                    /* Citation - The following two lines were inspired from http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights */
                     self.tableView.rowHeight = UITableViewAutomaticDimension
                     self.tableView.estimatedRowHeight = 170
                     self.tableView.reloadData()
