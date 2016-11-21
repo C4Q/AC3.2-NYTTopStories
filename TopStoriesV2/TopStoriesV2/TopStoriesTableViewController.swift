@@ -17,8 +17,8 @@ class TopStoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.estimatedRowHeight = 200
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        self.tableView.estimatedRowHeight = 200
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         APIRequestManager.manager.getData(APIURlSring: APIURL) { (data: Data?) in
             if let validData = data,
