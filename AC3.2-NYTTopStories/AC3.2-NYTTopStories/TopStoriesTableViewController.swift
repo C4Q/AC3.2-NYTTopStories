@@ -19,6 +19,9 @@ class TopStoriesTableViewController: UITableViewController {
         
         self.title = "NYT Top Stories"
         
+        self.tableView.estimatedRowHeight = 200
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
         APIRequestManager.manager.getData(endPoint: topStoriesAPIEndPoint) { (data: Data?) in
             if  let validData = data,
                 let validStories = TopStory.getTopStories(from: validData) {

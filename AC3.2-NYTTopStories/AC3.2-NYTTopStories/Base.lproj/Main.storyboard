@@ -23,11 +23,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="199"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O1D-fs-OBJ" id="Xwe-wr-ZWG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="198"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="198.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qiz-2S-uN0" userLabel="Title Label">
-                                            <rect key="frame" x="8" y="18" width="359" height="20.5"/>
+                                            <rect key="frame" x="8" y="8" width="359" height="20.5"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Title">
                                                     <attributes>
@@ -38,19 +38,19 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Byline" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Al-1f-3iF" userLabel="Byline Label">
-                                            <rect key="frame" x="8" y="46.5" width="359" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abstract" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iG-9p-MkB" userLabel="Abstract Label">
-                                            <rect key="frame" x="8" y="96.5" width="359" height="21"/>
+                                            <rect key="frame" x="8" y="36.5" width="359" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiA-ui-Cau" userLabel="Date Label">
-                                            <rect key="frame" x="8" y="67.5" width="359" height="21"/>
+                                            <rect key="frame" x="8" y="57" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abstract" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iG-9p-MkB" userLabel="Abstract Label">
+                                            <rect key="frame" x="8" y="86.5" width="359" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -58,7 +58,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="LiA-ui-Cau" firstAttribute="leading" secondItem="Xwe-wr-ZWG" secondAttribute="leadingMargin" id="Ahd-bG-7jG"/>
-                                        <constraint firstAttribute="topMargin" secondItem="Qiz-2S-uN0" secondAttribute="top" constant="-10" id="Jd6-QL-bH2"/>
+                                        <constraint firstAttribute="topMargin" secondItem="Qiz-2S-uN0" secondAttribute="top" id="Jd6-QL-bH2"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2iG-9p-MkB" secondAttribute="bottom" priority="250" id="KkB-6W-qhv"/>
                                         <constraint firstItem="2iG-9p-MkB" firstAttribute="top" secondItem="LiA-ui-Cau" secondAttribute="bottom" constant="8" id="MVG-JJ-aCt"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="2iG-9p-MkB" secondAttribute="trailing" id="RR6-Jj-W4n"/>
                                         <constraint firstItem="6Al-1f-3iF" firstAttribute="top" secondItem="Qiz-2S-uN0" secondAttribute="bottom" constant="8" id="W35-aq-miA"/>
