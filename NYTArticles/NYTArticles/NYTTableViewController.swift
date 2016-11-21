@@ -17,6 +17,7 @@ class NYTTableViewController: UITableViewController {
         super.viewDidLoad()
         displayData()
         self.navigationItem.title = "Home"
+        self.tableView.rowHeight = 180
     }
     
     // MARK: - Method
