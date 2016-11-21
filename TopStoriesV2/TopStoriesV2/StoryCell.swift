@@ -31,6 +31,13 @@ class StoryCell: UITableViewCell {
         return by
     }()
     
+    let storyAbstract: UILabel = {
+        let sa = UILabel()
+        sa.translatesAutoresizingMaskIntoConstraints = false
+        sa.numberOfLines = 0
+        sa.lineBreakMode = .byWordWrapping
+        return sa
+    }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,12 +52,17 @@ class StoryCell: UITableViewCell {
         
         addSubview(storyTitle)
         addSubview(storyByLine)
-        storyTitle.frame = CGRect(x: 10, y: 20, width: frame.width + 75, height: frame.height + 25)
-        storyTitle.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        addSubview(storyAbstract)
+        storyTitle.frame = CGRect(x: 20, y: 20, width: frame.width + 75, height: frame.height + 25)
+        storyTitle.rightAnchor.constraint(equalTo: rightAnchor, constant: 10).isActive = true
         storyTitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         
-        storyByLine.frame = CGRect(x: 10, y: storyTitle.frame.height + 25, width: self.frame.width + 75, height: self.frame.height)
-        storyByLine.topAnchor.constraint(equalTo: storyTitle.bottomAnchor).isActive = true
+        storyByLine.frame = CGRect(x: 20, y: storyTitle.frame.height + 25, width: self.frame.width + 75, height: self.frame.height)
+        storyByLine.topAnchor.constraint(equalTo: storyTitle.bottomAnchor, constant: 10).isActive = true
         
+        storyAbstract.frame = CGRect(x: 20, y: 20, width: frame.width + 75, height: frame.height + 25)
+        storyAbstract.topAnchor.constraint(equalTo: storyByLine.bottomAnchor, constant: 10).isActive = true
+        storyAbstract.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        storyAbstract.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
     }
 }

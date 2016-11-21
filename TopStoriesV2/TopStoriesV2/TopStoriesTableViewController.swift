@@ -31,7 +31,7 @@ class TopStoriesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 150
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,6 +50,7 @@ class TopStoriesTableViewController: UITableViewController {
         let story = objects[indexPath.row]
         cell.storyTitle.text = story.storyTitle
         cell.storyByLine.text = story.storyByLine
+        cell.storyAbstract.text = story.storyAbstrct
         
         return cell
     }
