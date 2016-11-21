@@ -13,7 +13,7 @@ enum ParseError: Error {
     case results
 }
 
-class Article {
+class Article: NSObject {
     
     static let nytTopStoriesUrl = "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=62223032c424466e980a30cca8ce4dd0"
     
@@ -30,7 +30,7 @@ class Article {
     var orgFacet: [String]
     var perFacet: [String]
     var geoFacet: [String]
-    var shortURLString: String
+    //var shortURLString: String
     
     init(resultsDict: [String: Any]) {
         section = resultsDict["section"] as! String
@@ -46,7 +46,7 @@ class Article {
         orgFacet = resultsDict["org_facet"] as! [String]
         perFacet = resultsDict["per_facet"] as! [String]
         geoFacet = resultsDict["geo_facet"] as! [String]
-        shortURLString = resultsDict["short_url"] as! String
+        //shortURLString = resultsDict["short_url"] as! String
     }
 
     static func getJson(from data: Data) -> [Article] {

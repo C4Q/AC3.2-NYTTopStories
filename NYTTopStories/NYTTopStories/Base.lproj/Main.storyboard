@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="173"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YIc-qu-soY" id="3V7-bF-AdM">
-                                    <frame key="frameInset" width="375" height="172"/>
+                                    <frame key="frameInset" width="375" height="172.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZ8-H0-1Fk">
@@ -64,7 +64,19 @@
                             <outlet property="delegate" destination="NQR-pJ-OfU" id="SlV-31-UuN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2bm-0J-r1u"/>
+                    <navigationItem key="navigationItem" id="2bm-0J-r1u">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="WxN-jQ-kzC">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="NQR-pJ-OfU" id="Psp-8g-xoX"/>
+                            </connections>
+                        </textField>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ImE-hx-ehd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

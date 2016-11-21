@@ -16,7 +16,7 @@ class ApiRequestManager {
         guard let url = URL(string: endpoint) else { return }
         let session = URLSession(configuration: .default)
         session.dataTask(with: url) { (data, response, error) in
-            if error != nil {
+            if error != nil {   
                 print(error)
             }
             guard let validData = data else { return }

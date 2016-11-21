@@ -8,8 +8,9 @@
 
 import UIKit
 
-class HeadlinesTableViewController: UITableViewController {
-
+class HeadlinesTableViewController: UITableViewController, UITextFieldDelegate {
+    
+    var allArticles = [Article]()
     var articles = [Article]()
     
     override func viewDidLoad() {
@@ -20,7 +21,8 @@ class HeadlinesTableViewController: UITableViewController {
     func loadData() {
         ApiRequestManager.manager.getData(from: Article.nytTopStoriesUrl) { (data) in
             if let validData = data {
-                self.articles = Article.getJson(from: validData)
+                self.allArticles = Article.getJson(from: validData)
+                self.articles = self.allArticles
                 DispatchQueue.main.async {
                     /* Citation - The following two lines were inspired from http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights */
                     self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -61,6 +63,11 @@ class HeadlinesTableViewController: UITableViewController {
         
         cell.bylineAndDateLabel.text = byLineAndDateText
         cell.abstractLabel.text = article.abstract
+        
+        if article.perFacet.count > 0 {
+            cell.abstractLabel.text = "\(article.abstract)\n\nPER: \(article.perFacet.joined(separator: "; "))"
+        }
+        
         return cell
     }
     
@@ -68,5 +75,25 @@ class HeadlinesTableViewController: UITableViewController {
         guard let url = URL(string: articles[indexPath.row].urlString) else { return }
         /* Citation for the following line http://useyourloaf.com/blog/openurl-deprecated-in-ios10/ */
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    func applyPredicate(search: String) {
+        //let predicate = NSPredicate(format:"abstract contains[c] %@ or title contains[c] %@", search, search)
+        let predicate = NSPredicate(format:"ANY perFacet contains[c] %@", search) // Trump, Donald J
+        self.articles = self.allArticles.filter { predicate.evaluate(with: $0) }
+        self.tableView.reloadData()
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text {
+            if text.characters.count > 0 {
+                applyPredicate(search: text)
+            } else {
+                self.articles = self.allArticles
+                self.tableView.reloadData()
+            }
+        }
+        return true
     }
 }
