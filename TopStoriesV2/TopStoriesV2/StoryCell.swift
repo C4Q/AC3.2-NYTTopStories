@@ -18,7 +18,7 @@ class StoryCell: UITableViewCell {
         title.lineBreakMode = .byWordWrapping
         title.font = UIFont.boldSystemFont(ofSize: 20.0)
         title.sizeToFit()
-        title.backgroundColor = .blue
+//        title.backgroundColor = .blue
         return title
     }()
     
@@ -27,7 +27,7 @@ class StoryCell: UITableViewCell {
         by.translatesAutoresizingMaskIntoConstraints = false
         by.numberOfLines = 0
         by.lineBreakMode = .byWordWrapping
-        by.backgroundColor = .green
+//        by.backgroundColor = .green
         return by
     }()
     
@@ -44,12 +44,13 @@ class StoryCell: UITableViewCell {
     func setupCell() {
         
         addSubview(storyTitle)
-//        addSubview(storyByLine)
+        addSubview(storyByLine)
         storyTitle.frame = CGRect(x: 10, y: 20, width: frame.width + 75, height: frame.height + 25)
-    
+        storyTitle.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        storyTitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         
         storyByLine.frame = CGRect(x: 10, y: storyTitle.frame.height + 25, width: self.frame.width + 75, height: self.frame.height)
-//        storyByLine.topAnchor.constraint(equalTo: storyTitle.bottomAnchor).isActive = true
+        storyByLine.topAnchor.constraint(equalTo: storyTitle.bottomAnchor).isActive = true
         
     }
 }
