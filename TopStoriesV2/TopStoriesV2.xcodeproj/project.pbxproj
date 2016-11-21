@@ -65,7 +65,6 @@
 				2D2821621DE2586D00C35BA9 /* StoryCell.swift */,
 				2D2821591DE2096C00C35BA9 /* APIRequestManager.swift */,
 				2D2821441DE2077100C35BA9 /* AppDelegate.swift */,
-				2D2821481DE2077100C35BA9 /* Main.storyboard */,
 				2D2821561DE2079F00C35BA9 /* Supporting Files */,
 			);
 			path = TopStoriesV2;
@@ -74,6 +73,7 @@
 		2D2821561DE2079F00C35BA9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2D2821481DE2077100C35BA9 /* Main.storyboard */,
 				2D28214B1DE2077100C35BA9 /* Assets.xcassets */,
 				2D28214D1DE2077100C35BA9 /* LaunchScreen.storyboard */,
 				2D2821501DE2077100C35BA9 /* Info.plist */,
@@ -330,6 +330,7 @@
 				2D2821551DE2077100C35BA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -36,6 +36,7 @@ class StoryCell: UITableViewCell {
         sa.translatesAutoresizingMaskIntoConstraints = false
         sa.numberOfLines = 0
         sa.lineBreakMode = .byWordWrapping
+//        sa.backgroundColor = .blue
         return sa
     }()
     
@@ -53,16 +54,17 @@ class StoryCell: UITableViewCell {
         addSubview(storyTitle)
         addSubview(storyByLine)
         addSubview(storyAbstract)
-        storyTitle.frame = CGRect(x: 20, y: 20, width: frame.width + 75, height: frame.height + 25)
-        storyTitle.rightAnchor.constraint(equalTo: rightAnchor, constant: 10).isActive = true
-        storyTitle.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         
-        storyByLine.frame = CGRect(x: 20, y: storyTitle.frame.height + 25, width: self.frame.width + 75, height: self.frame.height)
-        storyByLine.topAnchor.constraint(equalTo: storyTitle.bottomAnchor, constant: 10).isActive = true
+        storyTitle.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        storyTitle.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        storyTitle.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         
-        storyAbstract.frame = CGRect(x: 20, y: 20, width: frame.width + 75, height: frame.height + 25)
-        storyAbstract.topAnchor.constraint(equalTo: storyByLine.bottomAnchor, constant: 10).isActive = true
-        storyAbstract.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        storyAbstract.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        storyByLine.topAnchor.constraint(equalTo: storyTitle.bottomAnchor, constant: 8).isActive = true
+        storyByLine.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        storyByLine.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
+        
+        storyAbstract.topAnchor.constraint(equalTo: storyByLine.bottomAnchor, constant: 8).isActive = true
+        storyAbstract.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        storyAbstract.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
     }
 }

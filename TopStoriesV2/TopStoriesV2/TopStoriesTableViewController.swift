@@ -17,6 +17,9 @@ class TopStoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.estimatedRowHeight = 200
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
         APIRequestManager.manager.getData(APIURlSring: APIURL) { (data: Data?) in
             if let validData = data,
                 let validObjects = Stories.object(from: validData) {
@@ -31,7 +34,7 @@ class TopStoriesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 200
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
