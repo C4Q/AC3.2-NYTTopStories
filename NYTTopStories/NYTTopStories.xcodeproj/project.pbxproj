@@ -19,6 +19,8 @@
 		A7A94FC61DE234C400DBAFA9 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A94FC51DE234C400DBAFA9 /* FavoriteViewController.swift */; };
 		A7A94FCC1DE2381800DBAFA9 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A94FCB1DE2381800DBAFA9 /* FavoriteCell.swift */; };
 		A7C2D02E1DE279A400EF0719 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D02D1DE279A400EF0719 /* TabBarViewController.swift */; };
+		A7C2D0301DE2AEDE00EF0719 /* NYTTopStoriesBasicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D02F1DE2AEDE00EF0719 /* NYTTopStoriesBasicTableViewController.swift */; };
+		A7C2D0321DE2B21700EF0719 /* Basic Story Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C2D0311DE2B21700EF0719 /* Basic Story Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		A7A94FC51DE234C400DBAFA9 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		A7A94FCB1DE2381800DBAFA9 /* FavoriteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		A7C2D02D1DE279A400EF0719 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A7C2D02F1DE2AEDE00EF0719 /* NYTTopStoriesBasicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NYTTopStoriesBasicTableViewController.swift; sourceTree = "<group>"; };
+		A7C2D0311DE2B21700EF0719 /* Basic Story Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Basic Story Cell.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 				A7A811DE1DE15E3E00EAC764 /* NYTTopStoriesViewController.swift */,
 				A7A94FC51DE234C400DBAFA9 /* FavoriteViewController.swift */,
 				A7C2D02D1DE279A400EF0719 /* TabBarViewController.swift */,
+				A7C2D02F1DE2AEDE00EF0719 /* NYTTopStoriesBasicTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 			children = (
 				A7A811F41DE1765000EAC764 /* StoryCell.swift */,
 				A7A94FCB1DE2381800DBAFA9 /* FavoriteCell.swift */,
+				A7C2D0311DE2B21700EF0719 /* Basic Story Cell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -192,6 +198,7 @@
 			files = (
 				A7A94FC61DE234C400DBAFA9 /* FavoriteViewController.swift in Sources */,
 				A7A811F31DE167D300EAC764 /* Media.swift in Sources */,
+				A7C2D0301DE2AEDE00EF0719 /* NYTTopStoriesBasicTableViewController.swift in Sources */,
 				A7A811EF1DE1634200EAC764 /* APIRequestManager.swift in Sources */,
 				A7A811DF1DE15E3E00EAC764 /* NYTTopStoriesViewController.swift in Sources */,
 				A7C2D02E1DE279A400EF0719 /* TabBarViewController.swift in Sources */,
@@ -199,6 +206,7 @@
 				A7A94FCC1DE2381800DBAFA9 /* FavoriteCell.swift in Sources */,
 				A7A811F11DE1654800EAC764 /* Story.swift in Sources */,
 				A7A811F51DE1765000EAC764 /* StoryCell.swift in Sources */,
+				A7C2D0321DE2B21700EF0719 /* Basic Story Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
