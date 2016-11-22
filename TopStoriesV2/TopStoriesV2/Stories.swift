@@ -12,7 +12,7 @@ enum StoriesParseError: Error {
     case recordDict, title, abstract, url, byLine
 }
 
-class Stories {
+class Stories: NSObject {
     let storyURlString: String
     let storyTitle: String
     let storyAbstrct: String
