@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9B62EA471B1E128EEA437048CF8056E3E80F295D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3CCF31241C04A46A70B2ED63F3F9B754376D6710" : 9223372036854775807,
+    "9B62EA471B1E128EEA437048CF8056E3E80F295D" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "980B82E1-5123-46BD-8E0B-8D7C671E635A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3CCF31241C04A46A70B2ED63F3F9B754376D6710" : "..",
+    "9B62EA471B1E128EEA437048CF8056E3E80F295D" : "AC3.2-NYTTopStories\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AC3.2-NYTTopStories",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AC3.2-NYTTopStories\/AC3.2-NYTTopStories.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/vic-zhong\/AC3.2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3CCF31241C04A46A70B2ED63F3F9B754376D6710"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/vic-zhong\/AC3.2-NYTTopStories.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9B62EA471B1E128EEA437048CF8056E3E80F295D"
+    }
+  ]
+}
