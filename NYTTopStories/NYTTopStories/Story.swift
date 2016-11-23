@@ -25,9 +25,13 @@ enum StoryModelParseError: Error {
     case kicker
     case multimedia
     case short_url
+    case des_facet
+    case org_facet
+    case per_facet
+    case geo_facet
 }
 
-class Story {
+class Story: NSObject {
     static let endpoint = "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=4939e631466f482a868559ed9565d78e"
     
     let section: String
@@ -42,7 +46,11 @@ class Story {
     let published_date: String
     let material_type_facet: String
     let kicker: String
-    var multimedia: [Media]
+    let des_facet: [String]
+    let org_facet: [String]
+    let per_facet: [String]
+    let geo_facet: [String]
+    let multimedia: [Media]
     let short_url: String
     
     init(section: String,
@@ -57,6 +65,10 @@ class Story {
          published_date: String,
          material_type_facet: String,
          kicker: String,
+         des_facet: [String],
+         org_facet: [String],
+         per_facet: [String],
+         geo_facet: [String],
          multimedia: [Media],
          short_url: String){
         self.section = section
@@ -71,6 +83,10 @@ class Story {
         self.published_date = published_date
         self.material_type_facet = material_type_facet
         self.kicker = kicker
+        self.des_facet = des_facet
+        self.org_facet = org_facet
+        self.per_facet = per_facet
+        self.geo_facet = geo_facet
         self.multimedia = multimedia
         self.short_url = short_url
     }
@@ -100,6 +116,10 @@ class Story {
                   published_date: published_date,
                   material_type_facet: material_type_facet,
                   kicker: kicker,
+                  des_facet: [],
+                  org_facet: [],
+                  per_facet: [],
+                  geo_facet: [],
                   multimedia: [],
                   short_url: short_url)
     }
@@ -144,6 +164,18 @@ class Story {
         guard let multimedia = dictionary["multimedia"] as? [[String:AnyObject]] else {
             throw StoryModelParseError.multimedia
         }
+        guard let des_facet = dictionary["des_facet"] as? [String] else {
+            throw StoryModelParseError.des_facet
+        }
+        guard let org_facet = dictionary["org_facet"] as? [String] else {
+            throw StoryModelParseError.org_facet
+        }
+        guard let per_facet = dictionary["per_facet"] as? [String] else {
+            throw StoryModelParseError.per_facet
+        }
+        guard let geo_facet = dictionary["geo_facet"] as? [String] else {
+            throw StoryModelParseError.geo_facet
+        }
         var multimediaArr = [Media]()
         for media in multimedia {
             if let m = Media(from: media) {
@@ -167,6 +199,10 @@ class Story {
                   published_date: published_date,
                   material_type_facet: material_type_facet,
                   kicker: kicker,
+                  des_facet: des_facet,
+                  org_facet: org_facet,
+                  per_facet: per_facet,
+                  geo_facet: geo_facet,
                   multimedia: multimediaArr,
                   short_url: short_url)
     }

@@ -25,7 +25,12 @@ class NYTTopStoriesViewController: UIViewController, UITableViewDelegate, UITabl
             if data != nil {
                 dump(data!)
                 if let validStory = Story.generateStory(from: data!) {
+                    
                     self.storyObjectArr = validStory
+                    
+//                    let predicate = NSPredicate(format: "abstract[c] 'democrat'")
+//                    self.storyObjectArrFiltered = validStory.filter{predicate.evaluate(with: $0)}
+                    
                     dump(self.storyObjectArr)
                 }
                 DispatchQueue.main.async {
