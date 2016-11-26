@@ -8,19 +8,30 @@
 
 import Foundation
 
-class NYTTopStories {
+class NYTTopStories: NSObject {
     let title: String
     let byLine: String
     let date: String
     let abstract: String
     let url: String
+    let materialTypeFacet: String
+    let desFacet: [String]
+    let orgFacet: [String]
+    let perFacet: [String]
+    let geoFacet: [String]
     
-    init(title: String, byLine: String, date: String, abstract: String, url: String) {
+    
+    init(title: String, byLine: String, date: String, abstract: String, url: String, materialTypeFacet: String, desFacet: [String], orgFacet: [String], perFacet: [String], geoFacet: [String]) {
         self.title = title
         self.byLine = byLine
         self.date = date
         self.abstract = abstract
         self.url = url
+        self.materialTypeFacet = materialTypeFacet
+        self.desFacet = desFacet
+        self.orgFacet = orgFacet
+        self.perFacet = perFacet
+        self.geoFacet = geoFacet
     }
     
     static func getTopStories(from data: Data) -> [NYTTopStories]? {
@@ -37,10 +48,15 @@ class NYTTopStories {
                     let abstract = dataObject["abstract"] as? String,
                     let url = dataObject["url"] as? String,
                     let byLine = dataObject["byline"] as? String,
-                    let date = dataObject["updated_date"] as? String else {
+                    let date = dataObject["updated_date"] as? String,
+                    let materialTypeFacet = dataObject["material_type_facet"] as? String,
+                    let desFacet = dataObject["des_facet"] as? [String],
+                    let orgFacet = dataObject["org_facet"] as? [String],
+                    let perFacet = dataObject["per_facet"] as? [String],
+                    let geoFacet = dataObject["geo_facet"] as? [String] else {
                         return
                 }
-                let details = NYTTopStories(title: title, byLine: byLine, date: date, abstract: abstract, url: url)
+                let details = NYTTopStories(title: title, byLine: byLine, date: date, abstract: abstract, url: url, materialTypeFacet: materialTypeFacet, desFacet: desFacet, orgFacet: orgFacet, perFacet: perFacet, geoFacet: geoFacet)
                 returnData?.append(details)
             })
             return returnData
