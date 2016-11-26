@@ -8,6 +8,36 @@
 
 import UIKit
 
+enum Section: String {
+    case home
+    case opinion
+    case world
+    case national
+    case politics
+    case upshot
+    case nyregion
+    case business
+    case technology
+    case science
+    case health
+    case sports
+    case arts
+    case books
+    case movies
+    case theater
+    case sundayreview
+    case fashion
+    case tmagazine
+    case food
+    case travel
+    case magazine
+    case realestate
+    case automobiles
+    case obituaries
+    case insider
+    
+}
+
 enum StoryModelParseError: Error {
     case dictionary
     case results
@@ -33,6 +63,7 @@ enum StoryModelParseError: Error {
 
 class Story: NSObject {
     static let endpoint = "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=4939e631466f482a868559ed9565d78e"
+    static let endpointTech = "https://api.nytimes.com/svc/topstories/v2/technology.json?api-key=4939e631466f482a868559ed9565d78e"
     
     let section: String
     let subsection: String
