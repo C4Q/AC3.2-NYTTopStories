@@ -11,19 +11,23 @@ enum GeneralError: Error {
     case parsingError
 }
 
-class TopArticle {
+class TopArticle: NSObject {
     let title: String
     let byLine: String
     let date: String
     let abstract: String
     let url: URL
+    let section: String
+    let subSection: String
     
-    init(title: String, byLine: String, date: String, abstract: String, url: URL) {
+    init(title: String, byLine: String, date: String, abstract: String, url: URL, section: String, subSection: String) {
         self.title = title
         self.byLine = byLine
         self.date = date
         self.abstract = abstract
         self.url = url
+        self.section = section
+        self.subSection = subSection
         }
     
     convenience init?(withDict dict: [String:Any]) {
@@ -32,9 +36,11 @@ class TopArticle {
         let date = dict["created_date"] as? String,
         let abstract = dict["abstract"] as? String,
         let stringURL = dict["url"] as? String,
-        let url = URL(string: stringURL)
+        let url = URL(string: stringURL),
+        let section = dict["section"] as? String,
+        let subSection = dict["subsection"] as? String
             {
-                self.init(title: title, byLine: byLine, date: date, abstract: abstract, url: url)
+                self.init(title: title, byLine: byLine, date: date, abstract: abstract, url: url, section: section, subSection: subSection)
         }
         else {
             return nil
