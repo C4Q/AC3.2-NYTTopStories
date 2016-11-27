@@ -37,12 +37,12 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.estimatedRowHeight = 200
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        APIRequestManager.manager.getData(endPoint: "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=f41c1b23419a4f55b613d0a243ed3243")  { (data: Data?) in
+        APIRequestManager.manager.getData(section: "arts"){ (data: Data?) in
             if let validData = data {
                 if let jsonData = try? JSONSerialization.jsonObject(with: validData, options:[]) {
                     if let wholeDict = jsonData as? [String:Any],
                         let records = wholeDict["results"] as? [[String:Any]] {
-                        self.allArticles = Article.parseArticles(from: records)
+                        self.allArticles.append(contentsOf:Article.parseArticles(from: records))
                         
                         // start off with everything
                         self.articles = self.allArticles
@@ -53,6 +53,57 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
                 }
             }
         }
+        
+        APIRequestManager.manager.getData(section: "home"){ (data: Data?) in
+            if let validData = data {
+                if let jsonData = try? JSONSerialization.jsonObject(with: validData, options:[]) {
+                    if let wholeDict = jsonData as? [String:Any],
+                        let records = wholeDict["results"] as? [[String:Any]] {
+                        self.allArticles.append(contentsOf:Article.parseArticles(from: records))
+                        
+                        // start off with everything
+                        self.articles = self.allArticles
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+        
+        APIRequestManager.manager.getData(section: "sports"){ (data: Data?) in
+            if let validData = data {
+                if let jsonData = try? JSONSerialization.jsonObject(with: validData, options:[]) {
+                    if let wholeDict = jsonData as? [String:Any],
+                        let records = wholeDict["results"] as? [[String:Any]] {
+                        self.allArticles.append(contentsOf:Article.parseArticles(from: records))
+                        
+                        // start off with everything
+                        self.articles = self.allArticles
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+        
+//        APIRequestManager.manager.getData(endPoint: "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=f41c1b23419a4f55b613d0a243ed3243")  { (data: Data?) in
+//            if let validData = data {
+//                if let jsonData = try? JSONSerialization.jsonObject(with: validData, options:[]) {
+//                    if let wholeDict = jsonData as? [String:Any],
+//                        let records = wholeDict["results"] as? [[String:Any]] {
+//                        self.allArticles = Article.parseArticles(from: records)
+//                        
+//                        // start off with everything
+//                        self.articles = self.allArticles
+//                        DispatchQueue.main.async {
+//                            self.tableView.reloadData()
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     // MARK: - Table view data source
@@ -91,9 +142,18 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func applyPredicate(search: String) {
-        let predicate = NSPredicate(format:"ANY per_facet contains[c] %@", search, search, search)
+        let perFacetPredicate = NSPredicate(format:"ANY per_facet contains[c] %@", search, search, search)
+        let orgFacetPredicate = NSPredicate(format: "ANY org_facet contains[c] %@", search, search, search)
+        let desFacetPredicate = NSPredicate(format: "ANY des_facet contains[c] %@", search, search, search)
+        let geoFacetPredicate = NSPredicate(format: "ANY geo_facet contains[c] %@", search, search, search)
+        let abstractOrTitlePredicate = NSPredicate(format:"abstract contains[c] %@ or title contains[c] %@", search, search)
         
-        self.articles = self.allArticles.filter { predicate.evaluate(with: $0) }
+        self.articles = self.allArticles.filter { abstractOrTitlePredicate.evaluate(with: $0) }
+        self.articles.append(contentsOf: self.allArticles.filter { perFacetPredicate.evaluate(with: $0) })
+        self.articles.append(contentsOf: self.allArticles.filter { orgFacetPredicate.evaluate(with: $0) })
+        self.articles.append(contentsOf: self.allArticles.filter { desFacetPredicate.evaluate(with: $0) })
+        self.articles.append(contentsOf: self.allArticles.filter { geoFacetPredicate.evaluate(with: $0) })
+        
         self.tableView.reloadData()
     }
     
