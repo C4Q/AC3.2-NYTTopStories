@@ -11,7 +11,7 @@ import Foundation
 enum NewsModelParseError: Error {
     case results,title,abstract,byLine,url
 }
-class NYTTopStories {
+class NYTTopStories : NSObject {
     let title: String
     let abstract: String
     let byLine: String

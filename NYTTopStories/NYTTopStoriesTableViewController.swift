@@ -8,8 +8,10 @@
 
 import UIKit
 
-class NYTTopStoriesTableViewController: UITableViewController {
-    var topStories = [NYTTopStories]()
+class NYTTopStoriesTableViewController: UITableViewController{
+    @IBOutlet weak var textfield: UITextField!
+    var allTopStories = [NYTTopStories]()
+    var article = [NYTTopStories]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "HOME"
@@ -20,36 +22,62 @@ class NYTTopStoriesTableViewController: UITableViewController {
         APIRequestManager.manager.getData(endPoint: NYTTopStoriesEndPoint) { (data: Data?) in
             if  let validData = data,
                 let validTopStories = NYTTopStories.getNews(from: validData) {
-                self.topStories = validTopStories
-                dump(self.topStories)
+                self.allTopStories = validTopStories
+                let predicate = NSPredicate(format:"abstract contains[c] 'democrat'")
+                self.article = self.allTopStories.filter { predicate.evaluate(with: $0) }
+                dump(self.allTopStories)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         }
     }
-    // MARK: - Table view data source
+    
+    
+    
+       // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return topStories.count
+        return article.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topStoryCell", for: indexPath) as! NYTTopStoryTableViewCell
-        cell.NYTTopStoryTitle.text = topStories[indexPath.row].title
-        cell.NYTTopStoryByLine.text = topStories[indexPath.row].byLine
-        cell.NYTTopStoryAbstract.text = topStories[indexPath.row].abstract
+        cell.NYTTopStoryTitle.text = article[indexPath.row].title
+        cell.NYTTopStoryByLine.text = article[indexPath.row].byLine
+        cell.NYTTopStoryAbstract.text = article[indexPath.row].abstract
         
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = URL(string: topStories[indexPath.row].url) else {return}
+        guard let url = URL(string: allTopStories[indexPath.row].url) else {return}
         UIApplication.shared.open(url)
         
     }
+    
+    func applyPredicate() {
+        let predicate = NSPredicate(format:"abstract contains[c] 'democrat'")
+        self.article = self.allTopStories.filter { predicate.evaluate(with: $0) }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    
+    
+    }
+    // MARK: TextTField Delegate
+    func textFieldShouldReturn(_textField: UITextField) -> Bool {
+        if let text = textfield.text {
+            applyPredicate()
+        }
+        return true
+    }
+    
+    
+    
+    
     /*
      // MARK: - Navigation
      
