@@ -23,8 +23,9 @@ class Article : NSObject {
     let org_facet: [String]
     let per_facet: [String]
     let geo_facet: [String]
+    let apiSection: String
     
-    init?(from dict:[String:Any]) {
+    init?(from dict:[String:Any], apiSection: String) {
         if let section = dict["section"] as? String,
             let subsection = dict["subsection"] as? String,
             let title = dict["title"] as? String,
@@ -53,16 +54,17 @@ class Article : NSObject {
             self.org_facet = org_facet
             self.per_facet = per_facet
             self.geo_facet = geo_facet
+            self.apiSection = apiSection
         }
         else {
             return nil
         }
     }
     
-    static func parseArticles(from arr:[[String:Any]]) -> [Article] {
+    static func parseArticles(from arr:[[String:Any]], apiSection: String) -> [Article] {
         var articles = [Article]()
         for articleDict in arr {
-            if let article = Article(from: articleDict) {
+            if let article = Article(from: articleDict, apiSection: apiSection) {
                 articles.append(article)
             }
         }

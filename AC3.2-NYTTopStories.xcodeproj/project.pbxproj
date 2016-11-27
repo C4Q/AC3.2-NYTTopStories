@@ -62,16 +62,16 @@
 		1E08187B1DE0FA1E004B4E0D /* AC3.2-NYTTopStories */ = {
 			isa = PBXGroup;
 			children = (
+				1E0818941DE0FC6F004B4E0D /* Article.swift */,
 				1E0818921DE0FC0A004B4E0D /* APIRequestManager.swift */,
 				1E08187C1DE0FA1E004B4E0D /* AppDelegate.swift */,
-				1E08187E1DE0FA1E004B4E0D /* ViewController.swift */,
 				1E0818801DE0FA1E004B4E0D /* Main.storyboard */,
 				1E08188E1DE0FA5A004B4E0D /* ArticleTableViewCell.swift */,
 				1E0818901DE0FA6C004B4E0D /* ArticleTableViewController.swift */,
+				1E08187E1DE0FA1E004B4E0D /* ViewController.swift */,
 				1E0818831DE0FA1E004B4E0D /* Assets.xcassets */,
 				1E0818851DE0FA1E004B4E0D /* LaunchScreen.storyboard */,
 				1E0818881DE0FA1E004B4E0D /* Info.plist */,
-				1E0818941DE0FC6F004B4E0D /* Article.swift */,
 			);
 			path = "AC3.2-NYTTopStories";
 			sourceTree = "<group>";
@@ -277,6 +277,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AC3.2-NYTTopStories/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nyc.c4q.AC3-2-NYTTopStories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -289,6 +290,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AC3.2-NYTTopStories/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nyc.c4q.AC3-2-NYTTopStories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -315,6 +317,7 @@
 				1E08188D1DE0FA1E004B4E0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
