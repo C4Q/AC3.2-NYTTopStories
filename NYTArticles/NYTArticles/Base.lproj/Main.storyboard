@@ -71,7 +71,19 @@
                             <outlet property="delegate" destination="vYp-FA-hku" id="Vum-Rb-oCE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="47s-Tg-3FU"/>
+                    <navigationItem key="navigationItem" id="47s-Tg-3FU">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="17" id="X7j-c8-9ay">
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="vYp-FA-hku" id="YAu-nK-kf0"/>
+                            </connections>
+                        </textField>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Llx-w3-WX9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
