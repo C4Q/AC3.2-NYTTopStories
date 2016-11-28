@@ -19,6 +19,16 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
     
     var mergeSections = true
     
+    var endpointTitles: [String] {
+        get {
+            var sectionSet = Set<String>()
+            for article in articles {
+                sectionSet.insert(article.apiEndpoint)
+            }
+            return Array(sectionSet).sorted()
+        }
+    }
+    
     var sectionTitles: [String] {
         get {
             var sectionSet = Set<String>()
@@ -69,7 +79,7 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
             return self.sectionTitles.count
         }
         else {
-            return self.sectionsToLoad.count
+            return self.endpointTitles.count
         }
     }
     
@@ -79,7 +89,7 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
             return self.articles.filter { sectionPredicate.evaluate(with: $0)}.count
         }
         else {
-            let sectionPredicate = NSPredicate(format: "apiEndpoint = %@", self.sectionsToLoad[section])
+            let sectionPredicate = NSPredicate(format: "apiEndpoint = %@", self.endpointTitles[section])
             return self.articles.filter { sectionPredicate.evaluate(with: $0)}.count
         }
     }
@@ -91,7 +101,7 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
         if mergeSections {
             sectionPredicate = NSPredicate(format: "section = %@", self.sectionTitles[indexPath.section])
         } else {
-            sectionPredicate = NSPredicate(format: "apiEndpoint = %@", self.sectionsToLoad[indexPath.section])
+            sectionPredicate = NSPredicate(format: "apiEndpoint = %@", self.endpointTitles[indexPath.section])
         }
         
         let article = self.articles.filter { sectionPredicate.evaluate(with: $0)}[indexPath.row]
@@ -115,7 +125,7 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
             return self.sectionTitles[section]
         }
         else {
-            return self.sectionsToLoad[section]
+            return self.endpointTitles[section]
         }
     }
     
