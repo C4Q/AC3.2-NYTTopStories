@@ -44,7 +44,7 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func loadData(for endpoint: String) {
-        APIRequestManager.manager.getData(endPoint: "https://api.nytimes.com/svc/topstories/v2/\(endpoint.lowercased()).json?api-key=f41c1b23419a4f55b613d0a243ed3243")  { (data: Data?) in
+        APIRequestManager.manager.getData(endPoint: "https://api.nytimes.com/svc/topstories/v2/\(endpoint.lowercased()).json?api-key=788f422f30424d219442b029449df041")  { (data: Data?) in
             if let validData = data {
                 if let jsonData = try? JSONSerialization.jsonObject(with: validData, options:[]) {
                     if let wholeDict = jsonData as? [String:Any],
@@ -120,7 +120,16 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func applyPredicate(search: String) {
-        let predicate = NSPredicate(format:"ANY per_facet contains[c] %@", search, search, search)
+        let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [
+            NSPredicate(format:"ANY per_facet contains[c] %@", search, search, search),
+            NSPredicate(format:"ANY geo_facet contains[c] %@", search, search, search),
+            NSPredicate(format:"ANY org_facet contains[c] %@", search, search, search),
+            NSPredicate(format:"ANY des_facet contains[c] %@", search, search, search),
+            NSPredicate(format:"title contains[c] %@", search, search, search),
+            NSPredicate(format:"abstract contains[c] %@", search, search, search)
+            ])
+        
+//        let predicate = NSPredicate(format:"(ANY per_facet contains[c] %@", search, search, search)
         
         self.articles = self.allArticles.filter { predicate.evaluate(with: $0) }
         self.tableView.reloadData()
@@ -166,16 +175,12 @@ class ArticleTableViewController: UITableViewController, UISearchBarDelegate {
         if sender.isOn {
             print("Merge 3 api call together into sections found")
             self.mergeSections = true
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
         else {
             print("Create sections based on the originating API endpoint")
             self.mergeSections = false
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
 }
