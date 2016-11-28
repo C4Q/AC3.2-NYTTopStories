@@ -68,4 +68,20 @@ class Article : NSObject {
         }
         return articles
     }
+    
+    
+    
+    
+    
+    
+    
+//    static func parseArticles(from arr:[[String:Any]]) -> [Article] {
+//        var articles = [Article]()
+//        for articleDict in arr {
+//            if let article = Article(from: articleDict) {
+//                articles.append(article)
+//            }
+//        }
+//        return articles
+//    }
 }
